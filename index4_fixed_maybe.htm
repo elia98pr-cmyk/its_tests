@@ -1,0 +1,230 @@
+<HTML>
+<head>
+    <title>trovatore di libri</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="name" content="trovaLibri" />
+    <meta name="description" contetn="applicazione per torvare i libri in casa"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <link ref="stylesheet" href="asset/stile"/>
+    <script src="asset/codice"></script>
+</head>
+
+
+    <body style="background: #5c96f2"> <!--#4287f5 -->
+
+        <h1 class="bg-primary text-white p-3 ">trova libri online</h1>
+
+        <div class="container bg-light " style="border-radius:10px 10px 0px 0px">
+            <div class="row">
+                <div class="col-md-3" >
+                        <div class="sticky-top">
+                        <textarea id="nomeLibreria" class="form-control" placeholder="nome libreria.."></textarea>
+                        <button id="aggiungiLibreria" class="btn btn-danger w-100" style="margin-top:10px">aggiungi libreria</button>
+
+                        <img src="im-losing-it-im-losing-my-mind.gif" alt="nope" height="120" width="120"/>
+                        </div>
+                </div>
+                <div id="idDiv" class="col-md-9">
+
+
+                    <table id="targetTabella" class="table table-sm table-responsive" >
+                        <thead style="border-radius:4px ">
+                            <tr>
+                                <td style="text-align:center" colspan="4" type="button" class="bg-primary"> <h2>libreria 1</h2></td>
+                            </tr>
+                        </thead>
+                        <tbody id="targetBody">
+                            <tr>
+                                <td >
+                                    titolo
+                                </td>
+                                <td >
+                                    autore
+                                </td>
+                                <td >
+                                    stato
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot id="idFooter">
+                            <tr>
+                                <td>
+                                    <textarea id="idTitolo" placeholder="titolo del libro..."></textarea>
+                                </td>
+                                <td>
+                                    <textarea id="idAutore" placeholder="nome dell'autore...'"></textarea>
+                                </td>
+                                <td>
+                                    <textarea id="idStato" placeholder="inserisci lo stato..."></textarea>
+                                </td>
+                                    <td><button id="idAggiungi" class="btn btn-secondary w-10">aggiungi</button></td>
+                            </tr>
+                        </tfoot>
+
+                      <!--  <thead>
+                            <tr>
+                                <td style="text-align: center" colspan="4">
+                                    <h2>libreria 2 </h2>
+                                </td>
+                            </tr>
+                        </thead>  -->
+                    </table>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+            <script>
+                var nuovoNome;
+                var nuovoTitolo;
+                var nuovoAutore;
+                var nuovoStato;
+                var nuovoAggiungi;
+                var childTabella;
+                var childBody;
+
+                function inizializza(nome,titolo, autore, stato, aggiungi, tabella, body, footer, div){
+                 nuovoNome = document.getElementById(nome);
+                 nuovoTitolo = document.getElementById(titolo);
+                 nuovoAutore = document.getElementById(autore);
+                 nuovoStato = document.getElementById(stato);
+                 nuovoAggiungi = document.getElementById(aggiungi);
+                 childTabella = document.getElementById(tabella);
+                 childBody = document.getElementById(body);
+                 addFooter = document.getElementById(footer);
+                 varDiv =document.getElementById(div);
+                aggiungiLibreria.onclick= nuovaLibreria;
+               // aggiungi.onDblclick= aggiungiLibro;
+                }
+
+                function nuovaLibreria(){
+                    var libreria = document.createElement("table");
+                        var head = document.createElement("thead");
+                            var riga =document.createElement("tr")
+                            var cella =document.createElement("td");
+                        var body = document.createElement("tbody");
+                            var riga1= document.createElement("tr");
+                                var cella1 = document.createElement("td");
+                                var cella2 = document.createElement("td");
+                                var cella3 = document.createElement("td");
+                                var cella4 = document.createElement("td");
+                        var foot = document.createElement("tfoot");
+                            var riga2 = document.createElement("tr");
+                                var foot1 = document.createElement("td");
+                                var foot2 = document.createElement("td");
+                                var foot3 = document.createElement("td");
+                                var foot4 = document.createElement("td");
+
+
+                    varDiv.appendChild(libreria);
+                    libreria.appendChild(head);
+                    head.appendChild(riga);
+                    riga.appendChild(cella);
+
+                    libreria.appendChild(body);
+                    body.appendChild(riga1);
+                    riga1.appendChild(cella1);
+                    riga1.appendChild(cella2);
+                    riga1.appendChild(cella3);
+                    riga1.appendChild(cella4);
+
+                    libreria.appendChild(foot);
+                    foot.appendChild(riga2);
+                    riga2.appendChild(foot1);
+                    riga2.appendChild(foot2);
+                    riga2.appendChild(foot3);
+                    riga2.appendChild(foot4);
+
+                    //libreria.marginTop=0;
+
+                    libreria.className = "table table-sm table-responsive";
+                      //head
+                    cella.colSpan=4;
+                    cella.type="button";
+                    cella.className="bg-primary";
+                    cella.style.textAlign="center";
+
+                    cella.innerHTML = "<h2>"+nuovoNome.value+"<h2>";
+                    nuovoNome.value="";
+
+                    //body
+                    cella1.innerHTML="titolo";
+                    cella2.innerHTML="autore";
+                    cella3.innerHTML="stato";
+
+                    //foot
+
+                    var titoloInput = document.createElement("textarea");
+                    var autoreInput = document.createElement("textarea");
+                    var statoInput = document.createElement("textarea");
+
+                    titoloInput.className="form-control";
+                    autoreInput.className="form-control";
+                    statoInput.className="form-control";
+
+                    foot1.appendChild(titoloInput);
+                    foot2.appendChild(autoreInput);
+                    foot3.appendChild(statoInput);
+                    foot4.innerHTML="<button id=\"buttonRow\" class=\"btn btn-secondary w-10\">aggiungi</button>";
+
+                 /*  foot1.innerHTML="<textarea class=\"form-control\"></textarea>";
+                    foot2.innerHTML="<textarea class=\"form-control\"></textarea>";
+                    foot3.innerHTML="<textarea class=\"form-control\"></textarea>";
+                    foot4.innerHTML="<button id=\"buttonRow\" class=\"btn btn-secondary w-10\">aggiungi</button>"; */
+
+
+                   // libreria.setAttribute("id", "idFooter");
+
+                    var buttonLibro = foot4.querySelector("button");
+
+                    buttonLibro.onclick = aggiungiLibro;
+
+                           function aggiungiLibro(newButton,titoloIn,autoreIn,statoIn){
+
+                                    let Titolo =titoloIn.value;
+                                    let Autore = autoreIn.value;
+                                    let Stato = statoIn.value
+
+                                    var newRow = document.createElement("tr");
+                                    let newTitolo = document.createElement("td");
+                                    var newAutore =document.createElement("td");
+                                    var newStato = document.createElement("td");
+                                    var newAggiungi = document.createElement("td");
+
+
+                                    newTitolo.textContent= Titolo;
+                                    newAutore.textContent=Autore;
+                                    newStato.textContent=Stato;
+
+                                    body.appendChild(newRow);
+
+                                    newRow.append(newTitolo, newAutore, newStato,newAggiungi);
+
+                                 /*  newRow.appendChild(newTitolo);
+                                    newRow.appendChild(newAutore);
+                                    newRow.appendChild(newStato);
+                                    newRow.appendChild(newAggiungi); */
+                                    titoloIn.value="";
+
+                            }
+
+                            aggiungiLibro(buttonLibro,titoloInput,autoreInput,statoInput);
+                }
+
+                inizializza("nomeLibreria","idTitolo","idAutore", "idStato", "idAggiungi", "targetTabella", "targetBody","idFooter", "idDiv");
+                nuovaLibreria;
+                //aggiungiLibro();
+            </script>
+
+
+    </body>
+
+</HTML>
